@@ -1,0 +1,260 @@
+.events {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 90px 15px 75px;
+  overflow: hidden;
+  
+  h2 {
+    @include font($bold, 22, 32);
+  }
+  
+  .tabs {
+    border-top: 2px solid $accent;
+    margin-bottom: 60px;
+    
+    .tab {
+      width: 50%;
+      max-width: 152px;
+      height: 60px;
+      background-color: transparent;
+      @include font($bold, 18, 18);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      
+      &--active {
+        background: $accent;
+        color: $invert;
+      }
+    }
+  }
+  
+  .tabPanel {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    
+    &::-webkit-scrollbar {
+      height: 7px;
+      width: 4px;
+      background: lighten($text, 75%);
+    }
+    
+    &::-webkit-scrollbar-thumb:horizontal{
+      background: $sub;
+      border-radius: 10px;
+    }
+    
+    .event {
+      width: calc(100% / 4 - 24px);
+      min-width: 320px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+      padding: 25px;
+      box-sizing: border-box;
+      
+      + .event {
+        margin-left: 24px;
+      }
+      
+      &--now {
+        border: 1px solid $accent;
+      }
+      
+      .header {
+        position: relative;
+        height: 140px;
+        display: flex;
+        justify-content: space-between;
+        
+        > svg {
+          position: absolute;
+          top: -25px;
+          right: -25px;
+          z-index: -1;
+        }
+        
+        .tournament {
+          @include font($regular, 12, 14);
+          color: $sub;
+        }
+        
+        .when {
+          width: 84px;
+          text-align: right;
+          
+          a {
+            text-decoration: none;
+            
+            svg {
+              margin-right: 5px;
+              margin-bottom: 5px;
+            }
+          }
+          
+          .live {
+            @include font($regular, 12, 14);
+            color: $invert;
+          }
+          
+          .time {
+            @include font($bold, 24, 24);
+          }
+          
+          .date {
+            @include font($regular, 12, 14);
+            color: $sub;
+          }
+        }
+      }
+      
+      .info {
+        .labels {
+          display: flex;
+          
+          .label {
+            + .label {
+              margin-left: 15px;
+            }
+          }
+        }
+      }
+      
+      .teams {
+        &--matches {
+          .team {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 10px;
+          }
+        }
+        
+        &--battles {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          
+          .teamName {
+            padding-top: 10px;
+          }
+        }
+        
+        .team {
+          .teamName {
+            @include font($bold, 24, 24);
+            width: 100%;
+            max-width: 215px;
+            padding-right: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          
+          .count {
+            @include font($bold, 12, 14);
+            width: 60px;
+            border: 1px solid rgba(151, 151, 151, 0.2);
+            line-height: 24px;
+            text-align: center;
+          }
+        }
+        
+        .match {
+          width: 105px;
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+          background: #F0F0F0;
+          border-radius: 4px;
+          @include font($bold, 12, 14);
+          color: $sub;
+        }
+      }
+      
+      
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 5px;
+        
+        .bo {
+          @include font($regular, 12, 14);
+          color: $sub;
+          line-height: 30px;
+        }
+        
+        .ggbet_logo {
+          transform: scale(2.5);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .events {
+    box-sizing: border-box;
+    
+    .tabPanel {
+      .event {
+        padding: 15px;
+        
+        &--now {
+          .header .when {
+            width: 50px;
+            text-align: center;
+            
+            a {
+              display: block;
+              
+              .play {
+                width: 25px;
+                height: 25px;
+                margin: 0;
+              }
+            }
+          }
+        }
+        
+        .header {
+          height: 65px;
+          
+          > svg {
+            width: 153px;
+            height: 142px;
+            top: -17px;
+            right: -15px;
+          }
+        }
+        
+        .info .labels .label {
+          svg {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .events {
+    .tabPanel {
+      flex-direction: column;
+      overflow: visible;
+      
+      .event {
+        min-width: 100%;
+        
+        + .event {
+          margin-left: 0;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+

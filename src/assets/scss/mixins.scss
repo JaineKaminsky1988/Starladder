@@ -1,0 +1,28 @@
+// responsive font size
+
+// >>> font-size: fontSize(10, 30);
+@function fontSize($f-min, $f-max) {
+  $k: ($f-max - $f-min)/ (1920 - 320);
+  $b: $f-min - $k * 320;
+  
+  $b: $b * 1px;
+  
+  @return calc(#{$k} * 100vw + #{$b});
+}
+
+// font settings
+$regular: 400 !default;
+$bold: 700;
+
+// >>> @include font($regular, 12, 12);
+@mixin font($regular, $min-f, $max-f) {
+  font-family: 'Roboto', sans-serif;
+  font-weight: $regular; //400 $bold
+  font-size: fontSize($min-f, $max-f)
+}
+
+// colors
+$text: #282830;
+$invert: #fff;
+$sub: #757C84;
+$accent: #EC3E5A;
